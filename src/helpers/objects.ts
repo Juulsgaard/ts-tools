@@ -27,17 +27,32 @@ export function iterateObj<TItem>(obj: Record<string, TItem>, callback: (x: TIte
  * Map an object to a new object
  * Filters out null values
  * @param obj
+ * @param mapVal
  * @param mapKey
+ */
+export function mapObj<TItem, TOut>(
+  obj: Record<string, TItem>,
+  mapVal: (val: TItem, key: string) => (TOut | undefined),
+  mapKey: (val: TItem, key: string) => (string | undefined)
+): Record<string, NonNullable<TOut>>
+/**
+ * Map an object to a new object
+ * Filters out null values
+ * @param obj
  * @param mapVal
  */
-export function mapObject<TItem, TOut>(
+export function mapObj<TItem, TOut>(
   obj: Record<string, TItem>,
-  mapKey: (val: TItem, key: string) => string|undefined,
   mapVal: (val: TItem, key: string) => TOut|undefined
+): Record<string, NonNullable<TOut>>
+export function mapObj<TItem, TOut>(
+  obj: Record<string, TItem>,
+  mapVal: (val: TItem, key: string) => (TOut | undefined),
+  mapKey?: (val: TItem, key: string) => (string | undefined)
 ): Record<string, NonNullable<TOut>> {
   const result = {} as Record<string, NonNullable<TOut>>;
   for (let [key, val] of Object.entries(obj)) {
-    const newKey = mapKey(val, key);
+    const newKey = mapKey ? mapKey(val, key) : key;
     if (newKey === undefined) continue;
     const newVal = mapVal(val, key);
     if (newVal === undefined) continue;

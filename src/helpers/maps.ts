@@ -56,3 +56,14 @@ export function arrToLookup<TArr, TKey, TVal>(array: TArr[], getKey: MapFunc<TAr
 
   return map as Lookup<TKey, TVal|TArr>;
 }
+
+/**
+ * Iterate through a map and execute the callback for every element
+ * @param map
+ * @param callback
+ */
+export function iterateMap<TKey, TVal>(map: Map<TKey, TVal>, callback: (val: TVal, key: TKey) => void) {
+  for (let [key, val] of map.entries()) {
+    callback(val, key);
+  }
+}

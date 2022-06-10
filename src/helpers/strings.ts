@@ -34,7 +34,7 @@ export function titleCase(str: string) {
  * Format the string as a URL safe slug
  * @param str
  */
-function slugify(str: string) {
+export function slugify(str: string) {
   if (!str) return str;
   return str.toLowerCase().trim().replace(/\W+/g, '-');
 }
@@ -43,7 +43,7 @@ function slugify(str: string) {
  * Format the string as PascalCase
  * @param str
  */
-function toPascalCase(str: string) {
+export function pascalCase(str: string) {
   if (!str) return str;
 
   return upperFirst(
@@ -55,7 +55,7 @@ function toPascalCase(str: string) {
  * Format the string as camelCase
  * @param str
  */
-function camelCase(str: string) {
+export function camelCase(str: string) {
   if (!str) return str;
 
   return lowerFirst(
@@ -67,7 +67,7 @@ function camelCase(str: string) {
  * Format the string as dash-case
  * @param str
  */
-function dashCase(str: string) {
+export function dashCase(str: string) {
   if (!str) return str;
 
   return lowerFirst(str.trim())
@@ -78,7 +78,7 @@ function dashCase(str: string) {
  * Remove any HTML tags from the string
  * @param str
  */
-function stripTags(str: string) {
+export function stripTags(str: string) {
   if (!str) return str;
   let tmp = document.createElement("DIV");
   tmp.innerHTML = str;
