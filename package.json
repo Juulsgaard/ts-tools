@@ -1,0 +1,26 @@
+{
+  "name": "@consensus-labs/ts-tools",
+  "version": "1.0.0",
+  "description": "Tooling for Typescript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git@gitlab.com:consensus-labs/ts-tools.git",
+  "author": "Consensus Labs",
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "devDependencies": {
+    "@types/jest": "^28.1.1",
+    "jest": "^28.1.1",
+    "rollup": "^2.75.6",
+    "rollup-plugin-dts": "^4.2.2",
+    "ts-jest": "^28.0.4",
+    "typescript": "^4.7.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --config jestconfig.json",
+    "prepublishOnly": "tsc && rollup -c"
+  }
+}
