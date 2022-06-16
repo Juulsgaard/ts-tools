@@ -9,9 +9,10 @@ export type SortFn<TModel> = (a: TModel, b: TModel) => number;
 export type SimpleObject = Record<string, any>;
 
 export type DeepPartial<T> =
-  NonNullable<T> extends (infer A)[] ? DeepPartial<A>[] :
-    NonNullable<T> extends Record<string, any> ? { [K in keyof T]?: DeepPartial<T[K]> } :
-      T;
+  NonNullable<T> extends Date | File ? T :
+    NonNullable<T> extends (infer A)[] ? DeepPartial<A>[] :
+      NonNullable<T> extends Record<string, any> ? { [K in keyof T]?: DeepPartial<T[K]> } :
+        T;
 
 export interface WithId {
   id: string;
