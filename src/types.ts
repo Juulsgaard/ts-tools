@@ -4,6 +4,7 @@ export type Conditional<T, TBase, TTrue, TFalse = never> = T extends TBase ? TTr
 
 export type Selection<TModel, TProp> = MapFunc<TModel, TProp> | KeysOfType<TModel, TProp>;
 export type MapFunc<TModel, TProp> = ((x: TModel) => TProp);
+export type ArrayMapFunc<TModel, TProp> = ((x: TModel, i: number) => TProp);
 
 export type SortFn<TModel> = (a: TModel, b: TModel) => number;
 export type SimpleObject = Record<string, any>;

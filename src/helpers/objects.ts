@@ -1,4 +1,5 @@
 import {isObject} from "./type-predicates";
+import {ArrayMapFunc} from "../types";
 
 /**
  * Returns true if the object is empty
@@ -67,23 +68,25 @@ export function mapObj<TItem, TOut>(
  * @param mapKey
  * @param mapVal
  */
-export function arrToObj<TVal, TOut>(arr: TVal[], mapKey: (val: TVal) => string, mapVal: (val: TVal) => TOut): Record<string, TOut>;
+export function arrToObj<TVal, TOut>(arr: TVal[], mapKey: ArrayMapFunc<TVal, string>, mapVal: ArrayMapFunc<TVal, TOut>): Record<string, TOut>;
 /**
  * Map an array to an object
  * @param arr
  * @param mapKey
  */
-export function arrToObj<TVal>(arr: TVal[], mapKey: (val: TVal) => string): Record<string, TVal>;
+export function arrToObj<TVal>(arr: TVal[], mapKey: ArrayMapFunc<TVal, string>): Record<string, TVal>;
 export function arrToObj<TVal, TOut>(
   arr: TVal[],
-  mapKey: (val: TVal) => string,
-  mapVal?: (val: TVal) => TOut
+  mapKey: ArrayMapFunc<TVal, string>,
+  mapVal?: ArrayMapFunc<TVal, TOut>
 ): Record<string, TVal|TOut> {
 
   const result = {} as Record<string, TVal|TOut>;
+  let index = 0;
   for (let val of arr) {
-    const newKey = mapKey(val);
-    result[newKey] = mapVal ? mapVal(val) : val;
+    const newKey = mapKey(val, index);
+    result[newKey] = mapVal ? mapVal(val, index) : val;
+    index++;
   }
   return result;
 }

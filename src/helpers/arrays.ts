@@ -64,10 +64,11 @@ export function objToArr<TVal, TOut>(obj: Record<string, TVal>, mapFn?: (val: TV
  * @param arr
  * @param map
  */
-export function mapArr<TVal, TOut>(arr: TVal[], map: (val: TVal) => TOut|undefined|null): NonNullable<TOut>[] {
+export function mapArr<TVal, TOut>(arr: TVal[], map: (val: TVal, index: number) => TOut|undefined|null): NonNullable<TOut>[] {
   const result = [] as NonNullable<TOut>[];
+  let index = 0;
   for (let val of arr) {
-    const newVal = map(val);
+    const newVal = map(val, index++);
     if (newVal == null) continue;
     result.push(newVal as NonNullable<TOut>);
   }
