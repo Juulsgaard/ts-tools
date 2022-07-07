@@ -1,6 +1,6 @@
 import {ArrayMapFunc, MapFunc} from "../types";
 
-export type Lookup<TKey, TVal> = Map<TKey extends undefined ? null : TKey, TVal[]>;
+export type Lookup<TKey, TVal> = Map<TKey, TVal[]>;
 
 /**
  * Map an array to a Map
