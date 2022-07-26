@@ -15,3 +15,7 @@ export function isBool(bool: any): bool is boolean {
 export function hasId(obj: any): obj is WithId {
   return obj != null && 'id' in obj;
 }
+
+export function isFunction(value: any): value is (...args: any[]) => any {
+  return typeof value === 'function';
+}
