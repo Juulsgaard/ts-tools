@@ -1,9 +1,9 @@
+import {ArrayMapFunc} from "../types";
+
 /**
  * Convert an array to a set
  * @param arr
  */
-import {ArrayMapFunc} from "../types";
-
 export function arrToSet<TArr>(arr: TArr[]): Set<TArr>;
 /**
  * Map an array to a set
