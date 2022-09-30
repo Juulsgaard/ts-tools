@@ -23,8 +23,26 @@ export function arrToMap<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<T
     index++;
   }
   return map;
-} {
+}
 
+/** Map an object to a Map */
+export function objToMap<TVal, TKey, TOut>(obj: Record<string, TVal>, mapKey: (val: TVal, key: string) => TKey, mapVal: (val: TVal, key: string) => TOut): Map<TKey, TOut>
+/** Map an object to a Map */
+export function objToMap<TVal, TOut>(obj: Record<string, TVal>, mapKey: null, mapVal: (val: TVal, key: string) => TOut): Map<string, TOut>
+/** Map an object to a Map */
+export function objToMap<TVal, TKey>(obj: Record<string, TVal>, mapKey: (val: TVal, key: string) => TKey): Map<TKey, TVal>
+/** Map an object to a Map */
+export function objToMap<TVal>(obj: Record<string, TVal>): Map<string, TVal>
+export function objToMap<TVal, TKey, TOut>(obj: Record<string, TVal>, mapKey?: ((val: TVal, key: string) => TKey)|null, mapVal?: (val: TVal, key: string) => TOut): Map<TKey|string, TOut|TVal> {
+  const map = new Map<TKey|string, TOut|TVal>();
+  for (let key in obj) {
+    const val = obj[key];
+    map.set(
+      mapKey ? mapKey(val, key) : key,
+      mapVal ? mapVal(val, key) : val
+    );
+  }
+  return map;
 }
 
 /**
