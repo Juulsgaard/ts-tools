@@ -43,17 +43,19 @@ export function setToArr<TSet, TOut>(set: Set<TSet>, map?: (val: TSet) => TOut):
  * Get the values of an Object as an Array
  * @param obj
  */
-export function objToArr<TVal, TOut>(obj: Record<string, TVal>): TVal[]
+export function objToArr<TKey extends string|number, TVal, TOut>(obj: Record<TKey, TVal>): TVal[]
 /**
  * Map an Object to an Array
  * @param obj
  * @param mapFn
  */
-export function objToArr<TVal, TOut>(obj: Record<string, TVal>, mapFn: (val: TVal, key: string) => TOut): TOut[]
-export function objToArr<TVal, TOut>(obj: Record<string, TVal>, mapFn?: (val: TVal, key: string) => TOut): (TOut|TVal)[] {
+export function objToArr<TKey extends string|number, TVal, TOut>(obj: Record<TKey, TVal>, mapFn: (val: TVal, key: TKey) => TOut): TOut[]
+export function objToArr<TKey extends string|number, TVal, TOut>(obj: Record<TKey, TVal>, mapFn?: (val: TVal, key: TKey) => TOut): (TOut|TVal)[] {
   if (!mapFn) return Object.values(obj);
-  const result = [] as TOut[];
-  for (let [key, val] of Object.entries(obj)) {
+
+  const result = [] as (TOut)[];
+  for (let key in obj) {
+    const val = obj[key];
     result.push(mapFn(val, key));
   }
   return result;

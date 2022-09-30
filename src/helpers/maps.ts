@@ -26,15 +26,15 @@ export function arrToMap<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<T
 }
 
 /** Map an object to a Map */
-export function objToMap<TVal, TKey, TOut>(obj: Record<string, TVal>, mapKey: (val: TVal, key: string) => TKey, mapVal: (val: TVal, key: string) => TOut): Map<TKey, TOut>
+export function objToMap<TKey extends string|number, TVal, TOutKey, TOut>(obj: Record<TKey, TVal>, mapKey: (val: TVal, key: TKey) => TOutKey, mapVal: (val: TVal, key: TKey) => TOut): Map<TOutKey, TOut>
 /** Map an object to a Map */
-export function objToMap<TVal, TOut>(obj: Record<string, TVal>, mapKey: null, mapVal: (val: TVal, key: string) => TOut): Map<string, TOut>
+export function objToMap<TKey extends string|number, TVal, TOut>(obj: Record<TKey, TVal>, mapKey: null, mapVal: (val: TVal, key: TKey) => TOut): Map<TKey, TOut>
 /** Map an object to a Map */
-export function objToMap<TVal, TKey>(obj: Record<string, TVal>, mapKey: (val: TVal, key: string) => TKey): Map<TKey, TVal>
+export function objToMap<TKey extends string|number, TVal, TOutKey>(obj: Record<TKey, TVal>, mapKey: (val: TVal, key: TKey) => TOutKey): Map<TOutKey, TVal>
 /** Map an object to a Map */
-export function objToMap<TVal>(obj: Record<string, TVal>): Map<string, TVal>
-export function objToMap<TVal, TKey, TOut>(obj: Record<string, TVal>, mapKey?: ((val: TVal, key: string) => TKey)|null, mapVal?: (val: TVal, key: string) => TOut): Map<TKey|string, TOut|TVal> {
-  const map = new Map<TKey|string, TOut|TVal>();
+export function objToMap<TKey extends string|number, TVal>(obj: Record<TKey, TVal>): Map<TKey, TVal>
+export function objToMap<TKey extends string|number, TVal, TOutKey, TOut>(obj: Record<TKey, TVal>, mapKey?: ((val: TVal, key: TKey) => TOutKey)|null, mapVal?: (val: TVal, key: TKey) => TOut): Map<TOutKey|TKey, TOut|TVal> {
+  const map = new Map<TOutKey|TKey, TOut|TVal>();
   for (let key in obj) {
     const val = obj[key];
     map.set(
