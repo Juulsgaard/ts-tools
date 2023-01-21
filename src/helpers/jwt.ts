@@ -5,6 +5,8 @@
  */
 export function parseJwt<TModel>(token: string): TModel {
     const base64Url = token.split('.')[1];
+    if (!base64Url) throw Error("Invalid JWT token string");
+
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(
         atob(base64)

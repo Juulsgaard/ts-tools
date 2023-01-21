@@ -4,7 +4,7 @@
  */
 export function lowerFirst<T extends string>(str: T): Uncapitalize<T> {
   if (!str) return str as Uncapitalize<T>;
-  return str[0].toLowerCase() + str.substring(1) as Uncapitalize<T>;
+  return str[0]!.toLowerCase() + str.substring(1) as Uncapitalize<T>;
 }
 
 /**
@@ -13,7 +13,7 @@ export function lowerFirst<T extends string>(str: T): Uncapitalize<T> {
  */
 export function upperFirst<T extends string>(str: T): Capitalize<T> {
   if (!str) return str as Capitalize<T>;
-  return str[0].toUpperCase() + str.substring(1) as Capitalize<T>;
+  return str[0]!.toUpperCase() + str.substring(1) as Capitalize<T>;
 }
 
 /**
@@ -94,12 +94,12 @@ export function getNameInitials(name: string) {
   const segments = name.trim().split(/\s+/);
 
   if (segments.length > 1) {
-    return segments[0][0].toUpperCase() + segments[segments.length - 1][0].toUpperCase();
+    return segments[0]![0]!.toUpperCase() + segments[segments.length - 1]![0]!.toUpperCase();
   }
 
-  if (segments[0].length < 2) {
-    return segments[0][0].toUpperCase();
+  if (segments[0]!.length < 2) {
+    return segments[0]![0]!.toUpperCase();
   }
 
-  return segments[0][0].toUpperCase() + segments[0][1].toLowerCase();
+  return segments[0]![0]!.toUpperCase() + segments[0]![1]!.toLowerCase();
 }
