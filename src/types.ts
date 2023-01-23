@@ -20,3 +20,7 @@ export type DeepPartial<T> =
 export interface WithId {
   id: string;
 }
+
+export interface Disposable {
+  dispose(): void;
+}
