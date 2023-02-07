@@ -17,6 +17,12 @@ export type DeepPartial<T> =
       NonNullable<T> extends Record<string, any> ? { [K in keyof T]?: DeepPartial<T[K]> } :
         T;
 
+export type UnsetPartial<T> = { [P in keyof T]-?: undefined }
+
+export type Loadable<TBase, TFull> =
+  TBase & UnsetPartial<Omit<TFull, keyof TBase>> |
+  TBase & TFull;
+
 export interface WithId {
   id: string;
 }
