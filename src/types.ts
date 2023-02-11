@@ -1,5 +1,5 @@
 export type KeysOfType<T, TProp> = { [P in keyof T]-?: T[P] extends TProp ? P : never }[keyof T];
-export type KeysOfTypeOrNull<T, TProp> = { [P in keyof T]-?: NonNullable<T[P]> extends TProp ? P : never }[keyof T];
+export type KeysOfTypeOrNull<T, TProp> = { [P in keyof T]-?: T[P] extends TProp|undefined ? P : never }[keyof T];
 export type ValueOfKey<T, TKey extends keyof T> = NonNullable<T[TKey]>;
 export type ArrayType<T> = T extends (infer A)[] ? A : never;
 export type Conditional<T, TBase, TTrue, TFalse = never> = T extends TBase ? TTrue : TFalse;
