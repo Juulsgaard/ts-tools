@@ -16,3 +16,4 @@ export * from './helpers/type-predicates';
 export * from './helpers/urls';
 export * from './helpers/scroll';
 export * from './helpers/timespan';
+export * from './helpers/mapping-cache';
