@@ -11,6 +11,9 @@ export type ArrayMapFunc<TModel, TProp> = ((x: TModel, i: number) => TProp);
 export type SortFn<TModel> = (a: TModel, b: TModel) => number;
 export type SimpleObject = Record<string, any>;
 
+type ConstrainedKeys<T extends {}, TConstraint extends {}> = {[K in keyof TConstraint]: K extends (keyof T) ? K : never}[keyof TConstraint];
+export type Constrain<T extends {}, TConstraint extends {}> = {[K in ConstrainedKeys<T, TConstraint>]: T[K]}
+
 export type DeepPartial<T> =
   NonNullable<T> extends Date | File ? T :
     NonNullable<T> extends (infer A)[] ? DeepPartial<A>[] :
