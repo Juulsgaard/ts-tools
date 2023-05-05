@@ -14,17 +14,32 @@ export type SimpleObject = Record<string, any>;
 type ConstrainedKeys<T extends {}, TConstraint extends {}> = {[K in keyof TConstraint]: K extends (keyof T) ? K : never}[keyof TConstraint];
 export type Constrain<T extends {}, TConstraint extends {}> = {[K in ConstrainedKeys<T, TConstraint>]: T[K]}
 
+export type UnsetPartial<T> = { [P in keyof T]?: undefined }
+export type UnsetExtra<TBase, TFull> = UnsetPartial<Omit<TFull, keyof TBase>>;
+
+
+export type Loadable<TBase, TFull> =
+  TBase & UnsetExtra<TBase, TFull> |
+  TBase & TFull;
+
+export type Loadable2Exclusive<TBase, T1, T2> =
+  (TBase & UnsetExtra<TBase, T1> & UnsetExtra<TBase, T2>) |
+  (TBase & T1 & UnsetExtra<TBase & T1, T2>) |
+  (TBase & T2 & UnsetExtra<TBase & T2, T1>);
+
+export type Loadable2<TBase, T1, T2> =
+  (TBase & UnsetExtra<TBase, T1> & UnsetExtra<TBase, T2>) |
+  (TBase & T1 & UnsetExtra<TBase & T1, T2>) |
+  (TBase & T2 & UnsetExtra<TBase & T2, T1>) |
+  (TBase & T1 & T2);
+
+
 export type DeepPartial<T> =
   NonNullable<T> extends Date | File ? T :
     NonNullable<T> extends (infer A)[] ? DeepPartial<A>[] :
       NonNullable<T> extends Record<string, any> ? { [K in keyof T]?: DeepPartial<T[K]> } :
         T;
 
-export type UnsetPartial<T> = { [P in keyof T]?: undefined }
-
-export type Loadable<TBase, TFull> =
-  TBase & UnsetPartial<Omit<TFull, keyof TBase>> |
-  TBase & TFull;
 
 export interface WithId {
   id: string;
