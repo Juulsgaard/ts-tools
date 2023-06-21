@@ -89,8 +89,20 @@ export function stripTags(str: string) {
  * Generate initials from a name
  * @param name
  */
-export function getNameInitials(name: string) {
+export function getNameInitials(name: string): string;
+/**
+ * Generate initials from a first and last name
+ * @param firstName - First Name
+ * @param lastName - Last Name
+ */
+export function getNameInitials(firstName: string, lastName: string): string;
+export function getNameInitials(name: string, lastName?: string) {
   if (!name.length) return 'XX';
+
+  if (lastName && lastName.length > 0) {
+    return name[0]! + lastName[0]!
+  }
+
   const segments = name.trim().split(/\s+/);
 
   if (segments.length > 1) {
