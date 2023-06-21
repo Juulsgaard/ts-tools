@@ -95,7 +95,7 @@ export function getNameInitials(name: string): string;
  * @param firstName - First Name
  * @param lastName - Last Name
  */
-export function getNameInitials(firstName: string, lastName: string): string;
+export function getNameInitials(firstName: string, lastName: string|undefined): string;
 export function getNameInitials(name: string, lastName?: string) {
   if (!name.length) return 'XX';
 
