@@ -1,13 +1,13 @@
 {
-  "name": "@consensus-labs/ts-tools",
+  "name": "@juulsgaard/ts-tools",
   "version": "1.4.2",
   "description": "Tooling for Typescript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "sideEffects": false,
-  "repository": "git@gitlab.com:consensus-labs/ts-tools.git",
-  "author": "Consensus Labs",
+  "repository": "git@github.com:Juulsgaard/ts-tools.git",
+  "author": "Juulsgaard",
   "license": "MIT",
   "files": [
     "dist/**"
