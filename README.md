@@ -1,4 +1,9 @@
-# TS Tools
+
+# TS Tools 
+
+![NPM License](https://img.shields.io/npm/v/@juulsgaard/ts-tools) 
+![NPM License](https://img.shields.io/npm/l/@juulsgaard/ts-tools) 
+![NPM Downloads](https://img.shields.io/npm/dw/@juulsgaard/ts-tools)
 
 A utility library for Typescript
 
