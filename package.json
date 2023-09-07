@@ -7,7 +7,7 @@
   "type": "module",
   "sideEffects": false,
   "repository": "git@github.com:Juulsgaard/ts-tools.git",
-  "author": "Juulsgaard",
+  "author": "Frederik Sørensen",
   "license": "MIT",
   "files": [
     "dist/**"
