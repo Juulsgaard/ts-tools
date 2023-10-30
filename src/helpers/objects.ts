@@ -128,6 +128,28 @@ export function deepEquals<T>(item1: T, item2: T) {
   return item1 === item2;
 }
 
+export function shallowEquals(item1: Record<string, unknown>|unknown[], item2: Record<string, unknown>|unknown[]): boolean {
+
+  if (Array.isArray(item1)) {
+    if (!Array.isArray(item2)) return false;
+    if (item1.length !== item2.length) return false;
+    for (let i = 0; i < item1.length; i++) {
+      if (item1[i] !== item2[i]) return false;
+    }
+    return true;
+  }
+
+  if (Array.isArray(item2)) return false;
+
+  if (Object.keys(item1).length !== Object.keys(item2).length) return false;
+  for (let key in item1) {
+    if (!item1.hasOwnProperty(key)) continue;
+    if (!item2.hasOwnProperty(key)) return false;
+    if (item1[key] !== item2[key]) return false;
+  }
+  return true;
+}
+
 /**
  * Apply freeze on an array and all elements and their properties
  * @param array
