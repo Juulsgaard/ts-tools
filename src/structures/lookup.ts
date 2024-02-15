@@ -1,9 +1,14 @@
 
 
-export class ReadOnlyLookup<TKey, TVal> {
+export class ReadonlyLookup<TKey, TVal> {
 
   protected noKey: TVal[]|undefined;
   protected values = new Map<NonNullable<TKey>, TVal[]>;
+
+  get size() {
+    if (this.noKey == null) return this.values.size;
+    return this.values.size + 1;
+  }
 
   get(key: TKey): TVal[]|undefined {
     if (key == null) return this.noKey;
@@ -15,13 +20,21 @@ export class ReadOnlyLookup<TKey, TVal> {
     return this.values.has(key);
   }
 
-  forEach(callback: (value: TVal[], key: NonNullable<TKey>|undefined) => void) {
-    if (this.noKey != null) callback(this.noKey, undefined);
-    this.values.forEach(callback);
+  forEach(callback: (value: TVal[], key: LookupKey<TKey>) => void) {
+    for (const [key, value] of this) {
+      callback(value, key);
+    }
+  };
+
+  *[Symbol.iterator](): Generator<[key: LookupKey<TKey>, TVal[]]> {
+    if (this.noKey != null) yield [undefined as LookupKey<TKey>, this.noKey];
+    for (let [key, value] of this.values) {
+      yield [key, value];
+    }
   };
 }
 
-export class Lookup<TKey, TVal> extends ReadOnlyLookup<TKey, TVal> {
+export class Lookup<TKey, TVal> extends ReadonlyLookup<TKey, TVal> {
 
   set(key: TKey, value: TVal[]): this {
     if (key == null) this.noKey = value;
@@ -54,4 +67,6 @@ export class Lookup<TKey, TVal> extends ReadOnlyLookup<TKey, TVal> {
     return this;
   }
 }
+
+export type LookupKey<T> = NonNullable<T> | (T extends undefined|null ? undefined : never);
 
