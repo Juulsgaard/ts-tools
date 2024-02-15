@@ -66,7 +66,7 @@ export function objToArr<TKey extends string|number, TVal, TOut>(obj: Record<TKe
  * @param arr
  * @param map
  */
-export function mapArr<TVal, TOut>(arr: TVal[], map: (val: TVal, index: number) => TOut|undefined|null): NonNullable<TOut>[] {
+export function mapArrNotNull<TVal, TOut>(arr: TVal[], map: (val: TVal, index: number) => TOut|undefined|null): NonNullable<TOut>[] {
   const result = [] as NonNullable<TOut>[];
   let index = 0;
   for (let val of arr) {

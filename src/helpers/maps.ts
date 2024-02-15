@@ -1,6 +1,4 @@
-import {ArrayMapFunc, MapFunc} from "../types";
-
-export type Lookup<TKey, TVal> = Map<TKey extends undefined ? null : TKey, TVal[]>;
+import {ArrayMapFunc} from "../types";
 
 /**
  * Map an array to a Map
@@ -43,40 +41,6 @@ export function objToMap<TKey extends string|number, TVal, TOutKey, TOut>(obj: R
     );
   }
   return map;
-}
-
-/**
- * Create a lookup where each key can map to multiple values
- * @param array
- * @param getKey
- */
-export function arrToLookup<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<TArr, TKey>): Lookup<TKey, TArr>
-/**
- * Create a lookup where each key can map to multiple values
- * @param array
- * @param getKey
- * @param getVal
- */
-export function arrToLookup<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<TArr, TKey>, getVal: ArrayMapFunc<TArr, TVal>): Lookup<TKey, TVal>
-export function arrToLookup<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<TArr, TKey>, getVal?: ArrayMapFunc<TArr, TVal>): Lookup<TKey, TVal|TArr> {
-  const map = new Map() as Lookup<TKey, TVal|TArr>;
-
-  let index = 0;
-  for (let item of array) {
-    const key = (getKey(item, index) ?? null) as TKey extends undefined ? null : TKey;
-    const val = getVal ? getVal(item, index) : item;
-    const list = map.get(key);
-    index++;
-
-    if (!list) {
-      map.set(key, [val]);
-      continue;
-    }
-
-    list.push(val);
-  }
-
-  return map as Lookup<TKey, TVal|TArr>;
 }
 
 /**
