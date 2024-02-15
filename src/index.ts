@@ -16,4 +16,7 @@ export * from './helpers/type-predicates';
 export * from './helpers/urls';
 export * from './helpers/scroll';
 export * from './helpers/timespan';
-export * from './helpers/mapping-cache';
+export * from './structures/map-cache';
+export {arrToLookup} from "./helpers/lookups";
+export {arrToLookup} from "./helpers/lookups";
+export {arrToLookup} from "./helpers/lookups";
