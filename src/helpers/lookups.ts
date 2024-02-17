@@ -6,7 +6,7 @@ import {Lookup} from "../structures/lookup";
  * @param array
  * @param getKey
  */
-export function arrToLookup<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<TArr, TKey>): Lookup<TKey, TArr>
+export function arrToLookup<TArr, TKey, TVal>(array: ReadonlyArray<TArr>, getKey: ArrayMapFunc<TArr, TKey>): Lookup<TKey, TArr>
 /**
  * Create a lookup where each key can map to multiple values
  * @param array
@@ -14,12 +14,12 @@ export function arrToLookup<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFun
  * @param getVal
  */
 export function arrToLookup<TArr, TKey, TVal>(
-  array: TArr[],
+  array: ReadonlyArray<TArr>,
   getKey: ArrayMapFunc<TArr, TKey>,
   getVal: ArrayMapFunc<TArr, TVal>
 ): Lookup<TKey, TVal>
 export function arrToLookup<TArr, TKey, TVal>(
-  array: TArr[],
+  array: ReadonlyArray<TArr>,
   getKey: ArrayMapFunc<TArr, TKey>,
   getVal?: ArrayMapFunc<TArr, TVal>
 ): Lookup<TKey, TVal | TArr> {

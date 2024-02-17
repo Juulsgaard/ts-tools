@@ -3,14 +3,14 @@
  * Get the values of a Map as an Array
  * @param map
  */
-export function mapToArr<TVal, TKey, TOut>(map: Map<TKey, TVal>): TVal[]
+export function mapToArr<TVal, TKey, TOut>(map: ReadonlyMap<TKey, TVal>): TVal[]
 /**
  * Map a Map to an Array
  * @param map
  * @param mapFn
  */
-export function mapToArr<TVal, TKey, TOut>(map: Map<TKey, TVal>, mapFn: (val: TVal, key: TKey) => TOut): TOut[]
-export function mapToArr<TVal, TKey, TOut>(map: Map<TKey, TVal>, mapFn?: (val: TVal, key: TKey) => TOut): (TOut|TVal)[] {
+export function mapToArr<TVal, TKey, TOut>(map: ReadonlyMap<TKey, TVal>, mapFn: (val: TVal, key: TKey) => TOut): TOut[]
+export function mapToArr<TVal, TKey, TOut>(map: ReadonlyMap<TKey, TVal>, mapFn?: (val: TVal, key: TKey) => TOut): (TOut|TVal)[] {
   if (!mapFn) return Array.from(map.values());
   const result = [] as TOut[];
   for (let [key, val] of map) {
@@ -23,14 +23,14 @@ export function mapToArr<TVal, TKey, TOut>(map: Map<TKey, TVal>, mapFn?: (val: T
  * Convert a Set to an Array
  * @param set
  */
-export function setToArr<TSet, TOut>(set: Set<TSet>): TSet[]
+export function setToArr<TSet, TOut>(set: ReadonlySet<TSet>): TSet[]
 /**
  * Map a Set to an Array
  * @param set
  * @param map
  */
-export function setToArr<TSet, TOut>(set: Set<TSet>, map: (val: TSet) => TOut): TOut[]
-export function setToArr<TSet, TOut>(set: Set<TSet>, map?: (val: TSet) => TOut): (TSet|TOut)[] {
+export function setToArr<TSet, TOut>(set: ReadonlySet<TSet>, map: (val: TSet) => TOut): TOut[]
+export function setToArr<TSet, TOut>(set: ReadonlySet<TSet>, map?: (val: TSet) => TOut): (TSet|TOut)[] {
   if (!map) return Array.from(set);
   const result = [] as TOut[];
   for (let val of set) {
@@ -66,7 +66,7 @@ export function objToArr<TKey extends string|number, TVal, TOut>(obj: Record<TKe
  * @param arr
  * @param map
  */
-export function mapArrNotNull<TVal, TOut>(arr: TVal[], map: (val: TVal, index: number) => TOut|undefined|null): NonNullable<TOut>[] {
+export function mapArrNotNull<TVal, TOut>(arr: ReadonlyArray<TVal>, map: (val: TVal, index: number) => TOut|undefined|null): NonNullable<TOut>[] {
   const result = [] as NonNullable<TOut>[];
   let index = 0;
   for (let val of arr) {

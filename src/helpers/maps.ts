@@ -5,15 +5,15 @@ import {ArrayMapFunc} from "../types";
  * @param array
  * @param getKey
  */
-export function arrToMap<TArr, TKey>(array: TArr[], getKey: ArrayMapFunc<TArr, TKey>): Map<TKey, TArr>
+export function arrToMap<TArr, TKey>(array: ReadonlyArray<TArr>, getKey: ArrayMapFunc<TArr, TKey>): Map<TKey, TArr>
 /**
  * Map an array to a Map
  * @param array
  * @param getKey
  * @param getVal
  */
-export function arrToMap<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<TArr, TKey>, getVal: ArrayMapFunc<TArr, TVal>): Map<TKey, TVal>
-export function arrToMap<TArr, TKey, TVal>(array: TArr[], getKey: ArrayMapFunc<TArr, TKey>, getVal?: ArrayMapFunc<TArr, TVal>): Map<TKey, TVal|TArr> {
+export function arrToMap<TArr, TKey, TVal>(array: ReadonlyArray<TArr>, getKey: ArrayMapFunc<TArr, TKey>, getVal: ArrayMapFunc<TArr, TVal>): Map<TKey, TVal>
+export function arrToMap<TArr, TKey, TVal>(array: ReadonlyArray<TArr>, getKey: ArrayMapFunc<TArr, TKey>, getVal?: ArrayMapFunc<TArr, TVal>): Map<TKey, TVal|TArr> {
   const map = new Map<TKey, TVal|TArr>();
   let index = 0;
   for (let item of array) {
@@ -48,7 +48,7 @@ export function objToMap<TKey extends string|number, TVal, TOutKey, TOut>(obj: R
  * @param map
  * @param callback
  */
-export function iterateMap<TKey, TVal>(map: Map<TKey, TVal>, callback: (val: TVal, key: TKey) => void) {
+export function iterateMap<TKey, TVal>(map: ReadonlyMap<TKey, TVal>, callback: (val: TVal, key: TKey) => void) {
   for (let [key, val] of map.entries()) {
     callback(val, key);
   }

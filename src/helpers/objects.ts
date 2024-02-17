@@ -68,15 +68,15 @@ export function mapObj<TItem, TOut>(
  * @param mapKey
  * @param mapVal
  */
-export function arrToObj<TVal, TOut>(arr: TVal[], mapKey: ArrayMapFunc<TVal, string>, mapVal: ArrayMapFunc<TVal, TOut>): Record<string, TOut>;
+export function arrToObj<TVal, TOut>(arr: ReadonlyArray<TVal>, mapKey: ArrayMapFunc<TVal, string>, mapVal: ArrayMapFunc<TVal, TOut>): Record<string, TOut>;
 /**
  * Map an array to an object
  * @param arr
  * @param mapKey
  */
-export function arrToObj<TVal>(arr: TVal[], mapKey: ArrayMapFunc<TVal, string>): Record<string, TVal>;
+export function arrToObj<TVal>(arr: ReadonlyArray<TVal>, mapKey: ArrayMapFunc<TVal, string>): Record<string, TVal>;
 export function arrToObj<TVal, TOut>(
-  arr: TVal[],
+  arr: ReadonlyArray<TVal>,
   mapKey: ArrayMapFunc<TVal, string>,
   mapVal?: ArrayMapFunc<TVal, TOut>
 ): Record<string, TVal|TOut> {
@@ -154,7 +154,7 @@ export function shallowEquals(item1: Record<string, unknown>|unknown[], item2: R
  * Apply freeze on an array and all elements and their properties
  * @param array
  */
-export function deepFreeze<T>(array: T[]): ReadonlyArray<DeepReadonly<T>>;
+export function deepFreeze<T>(array: ReadonlyArray<T>): ReadonlyArray<DeepReadonly<T>>;
 /**
  * Apply freeze on an object and all nested properties
  * @param obj

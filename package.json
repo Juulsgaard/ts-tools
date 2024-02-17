@@ -1,6 +1,6 @@
 {
   "name": "@juulsgaard/ts-tools",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Tooling for Typescript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

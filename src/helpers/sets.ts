@@ -4,14 +4,14 @@ import {ArrayMapFunc} from "../types";
  * Convert an array to a set
  * @param arr
  */
-export function arrToSet<TArr>(arr: TArr[]): Set<TArr>;
+export function arrToSet<TArr>(arr: ReadonlyArray<TArr>): Set<TArr>;
 /**
  * Map an array to a set
  * @param arr
  * @param map
  */
-export function arrToSet<TArr, TSet>(arr: TArr[], map: ArrayMapFunc<TArr, TSet>): Set<TSet>
-export function arrToSet<TArr, TSet>(arr: TArr[], map?: ArrayMapFunc<TArr, TSet>): Set<TSet|TArr> {
+export function arrToSet<TArr, TSet>(arr: ReadonlyArray<TArr>, map: ArrayMapFunc<TArr, TSet>): Set<TSet>
+export function arrToSet<TArr, TSet>(arr: ReadonlyArray<TArr>, map?: ArrayMapFunc<TArr, TSet>): Set<TSet|TArr> {
   if (!map) return new Set<TArr>(arr);
 
   const result = new Set<TSet>;
