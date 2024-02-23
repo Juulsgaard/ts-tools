@@ -48,3 +48,7 @@ export interface WithId {
 export interface Disposable {
   dispose(): void;
 }
+
+export function test(): WithId {
+  return {id: ''};
+}

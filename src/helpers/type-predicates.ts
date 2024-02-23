@@ -1,21 +1,29 @@
 import {WithId} from "../types";
 
-export function isObject(obj: any): obj is object {
+export function isObject(obj: unknown): obj is object {
   return obj != null && typeof obj === 'object';
 }
 
-export function isString(str: any): str is string {
+export function isString(str: unknown): str is string {
   return typeof str === 'string';
 }
 
-export function isBool(bool: any): bool is boolean {
+export function isNumber(num: unknown): num is number {
+  return typeof num === 'number';
+}
+
+export function isBool(bool: unknown): bool is boolean {
   return bool === true || bool === false;
 }
 
-export function hasId(obj: any): obj is WithId {
-  return obj != null && 'id' in obj;
+export function isArray(arr: unknown): arr is unknown[] {
+  return Array.isArray(arr);
 }
 
-export function isFunction(value: any): value is (...args: any[]) => any {
+export function hasId(obj: unknown): obj is WithId {
+  return isObject(obj) && 'id' in obj;
+}
+
+export function isFunction(value: unknown): value is (...args: any[]) => any {
   return typeof value === 'function';
 }

@@ -22,3 +22,4 @@ export * from './helpers/urls';
 export * from './structures/map-cache';
 export * from './structures/file-type';
 export * from './structures/lookup';
+export * from './structures/element-class-manager';
