@@ -18,6 +18,7 @@ export * from './helpers/strings';
 export * from './helpers/timespan';
 export * from './helpers/type-predicates';
 export * from './helpers/urls';
+export * from './helpers/errors';
 
 export * from './structures/map-cache';
 export * from './structures/file-type';
