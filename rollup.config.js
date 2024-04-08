@@ -1,19 +1,25 @@
-import dts from 'rollup-plugin-dts';
+import {dts} from "rollup-plugin-dts";
+import esbuild from "rollup-plugin-esbuild";
+
+const external = [];
 
 export default [
 	{
-		input: 'out/index.js',
+		input: 'src/index.ts',
+		external,
 		output: {
 			dir: 'dist',
 			format: "esm",
 			preserveModules: true,
-		}
+		},
+		plugins: [esbuild()]
 	},
 	{
-		input: 'out/index.d.ts',
+		input: 'src/index.ts',
+		external,
+		plugins: [dts()],
 		output: {
 			file: 'dist/index.d.ts'
-		},
-		plugins: [dts()]
+		}
 	}
 ]
