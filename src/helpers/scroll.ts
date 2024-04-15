@@ -30,7 +30,7 @@ export function scrollToElement(element: HTMLElement, options?: ScrollOptions|nu
 
   const containerTop = options.container.getBoundingClientRect().top;
   const top = element.getBoundingClientRect().top;
-  const delta = containerTop - top;
+  const delta = top - containerTop;
 
   options.container.scrollTo({
     top: Math.max(0, (delta + options.container.scrollTop) - offset),
