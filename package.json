@@ -1,7 +1,8 @@
 {
   "name": "@juulsgaard/ts-tools",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Tooling for Typescript",
+  "homepage": "https://www.juulsgaard.io",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -22,6 +23,7 @@
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-esbuild": "^6.1.1",
     "ts-jest": "^29.2.3",
+    "typedoc": "^0.26.7",
     "typescript": "~5.5.4"
   },
   "scripts": {
@@ -29,5 +31,5 @@
     "test": "jest --config jestconfig.json",
     "prepublishOnly": "rollup -c"
   },
-  "packageManager": "pnpm@8.15.6"
+  "packageManager": "pnpm@9.10.0"
 }

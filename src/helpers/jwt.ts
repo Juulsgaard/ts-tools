@@ -1,6 +1,7 @@
 
 /**
  * Parse a JWT token
+ * @category JWT Tools
  * @param token
  */
 export function parseJwt<TModel>(token: string): TModel {

@@ -2,6 +2,7 @@ import {isObject, isString} from "./type-predicates";
 
 /**
  * Parse errors into an Error object
+ * @category Error Handling
  * @param error - The thrown error
  * @private
  */

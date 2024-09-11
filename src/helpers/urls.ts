@@ -1,10 +1,11 @@
+import {isString} from "./type-predicates";
+
 /**
  * Open a URL using an anchor tag
+ * @category URL Tools
  * @param url
  * @param newTab
  */
-import {isString} from "./type-predicates";
-
 export function openUrl(url: string, newTab = false) {
   const anchor = document.createElement('a');
   anchor.href = url;
@@ -18,6 +19,7 @@ export function openUrl(url: string, newTab = false) {
 
 /**
  * Trim a URL path, so it has no starting or trailing slash
+ * @category URL Tools
  * @param path
  */
 export function trimUrlPath(path: string) {
@@ -26,6 +28,7 @@ export function trimUrlPath(path: string) {
 
 /**
  * Add a query param to a URL
+ * @category URL Tools
  * @param url
  * @param prop
  * @param value
@@ -39,6 +42,7 @@ export function applyQueryParam(url: string, prop: string, value: string) {
 
 /**
  * Download from URL / DataURL
+ * @category URL Tools
  * @param url - URL or DataURL
  * @param filename - Name of downloaded file
  */
@@ -63,6 +67,7 @@ export function downloadUrl(url: string, filename?: string) {
 
 /**
  * Generate and download a JSON file based provided JSON string or Object
+ * @category URL Tools
  * @param json - JSON string or JS Object
  * @param filename - Filename of downloaded file
  */

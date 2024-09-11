@@ -3,6 +3,7 @@ import {ArrayMapFunc} from "../types";
 
 /**
  * Returns true if the object is empty
+ * @category Object Tools
  * @param obj
  * @returns isEmpty
  */
@@ -13,6 +14,7 @@ export function objEmpty(obj: Record<string, any>): boolean {
 
 /**
  * Iterate an object and trigger the callback for each element
+ * @category Object Tools
  * @param obj - Target object
  * @param callback
  */
@@ -25,8 +27,9 @@ export function iterateObj<TItem>(obj: Record<string, TItem>, callback: (x: TIte
 }
 
 /**
- * Map an object to a new object
+ * Map an object to a new object.
  * Filters out null values
+ * @category Object Tools
  * @param obj
  * @param mapVal
  * @param mapKey
@@ -37,8 +40,9 @@ export function mapObj<TItem, TOut>(
   mapKey: (val: TItem, key: string) => (string | undefined)
 ): Record<string, NonNullable<TOut>>
 /**
- * Map an object to a new object
+ * Map an object to a new object.
  * Filters out null values
+ * @category Object Tools
  * @param obj
  * @param mapVal
  */
@@ -64,6 +68,7 @@ export function mapObj<TItem, TOut>(
 
 /**
  * Map an array to on object
+ * @category Object Tools
  * @param arr
  * @param mapKey
  * @param mapVal
@@ -71,6 +76,7 @@ export function mapObj<TItem, TOut>(
 export function arrToObj<TVal, TOut>(arr: ReadonlyArray<TVal>, mapKey: ArrayMapFunc<TVal, string>, mapVal: ArrayMapFunc<TVal, TOut>): Record<string, TOut>;
 /**
  * Map an array to an object
+ * @category Object Tools
  * @param arr
  * @param mapKey
  */
@@ -93,6 +99,7 @@ export function arrToObj<TVal, TOut>(
 
 /**
  * Strictly compare 2 objects and all their nested properties
+ * @category Object Tools
  * @param item1
  * @param item2
  */
@@ -128,6 +135,12 @@ export function deepEquals<T>(item1: T, item2: T) {
   return item1 === item2;
 }
 
+/**
+ * Compare 2 objects or arrays by comparing elements to each other
+ * @category Object Tools
+ * @param item1
+ * @param item2
+ */
 export function shallowEquals(item1: Record<string, unknown>|unknown[], item2: Record<string, unknown>|unknown[]): boolean {
 
   if (Array.isArray(item1)) {
@@ -152,11 +165,13 @@ export function shallowEquals(item1: Record<string, unknown>|unknown[], item2: R
 
 /**
  * Apply freeze on an array and all elements and their properties
+ * @category Object Tools
  * @param array
  */
 export function deepFreeze<T>(array: ReadonlyArray<T>): ReadonlyArray<DeepReadonly<T>>;
 /**
  * Apply freeze on an object and all nested properties
+ * @category Object Tools
  * @param obj
  */
 export function deepFreeze<T extends object>(obj: T): DeepReadonly<T>;
@@ -177,6 +192,10 @@ export function deepFreeze<T>(data: T): DeepReadonly<T> {
   return Object.freeze(data) as DeepReadonly<T>;
 }
 
+/**
+ * A type where all properties are recursively set to readonly
+ * @category Object Tools
+ */
 export type DeepReadonly<T> =
   T extends Function ? T :
     T extends (infer U)[] ? ReadonlyArray<DeepReadonly<U>> :
@@ -185,6 +204,7 @@ export type DeepReadonly<T> =
 
 /**
  * Create a deep clone of an object and all it's properties
+ * @category Object Tools
  * @param source
  */
 export function deepCopy<T>(source: T): T {

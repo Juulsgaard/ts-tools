@@ -3,12 +3,14 @@ import {Lookup} from "../structures/lookup";
 
 /**
  * Create a lookup where each key can map to multiple values
+ * @category Lookups
  * @param array
  * @param getKey
  */
 export function arrToLookup<TArr, TKey, TVal>(array: ReadonlyArray<TArr>, getKey: ArrayMapFunc<TArr, TKey>): Lookup<TKey, TArr>
 /**
  * Create a lookup where each key can map to multiple values
+ * @category Lookups
  * @param array
  * @param getKey
  * @param getVal

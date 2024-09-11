@@ -2,12 +2,14 @@ import {ArrayMapFunc} from "../types";
 
 /**
  * Map an array to a Map
+ * @category Map Tools
  * @param array
  * @param getKey
  */
 export function arrToMap<TArr, TKey>(array: ReadonlyArray<TArr>, getKey: ArrayMapFunc<TArr, TKey>): Map<TKey, TArr>
 /**
  * Map an array to a Map
+ * @category Map Tools
  * @param array
  * @param getKey
  * @param getVal
@@ -23,13 +25,17 @@ export function arrToMap<TArr, TKey, TVal>(array: ReadonlyArray<TArr>, getKey: A
   return map;
 }
 
-/** Map an object to a Map */
+/** Map an object to a Map
+ @category Map Tools */
 export function objToMap<TKey extends string|number, TVal, TOutKey, TOut>(obj: Record<TKey, TVal>, mapKey: (val: TVal, key: TKey) => TOutKey, mapVal: (val: TVal, key: TKey) => TOut): Map<TOutKey, TOut>
-/** Map an object to a Map */
+/** Map an object to a Map
+ @category Map Tools */
 export function objToMap<TKey extends string|number, TVal, TOut>(obj: Record<TKey, TVal>, mapKey: null, mapVal: (val: TVal, key: TKey) => TOut): Map<TKey, TOut>
-/** Map an object to a Map */
+/** Map an object to a Map
+ @category Map Tools */
 export function objToMap<TKey extends string|number, TVal, TOutKey>(obj: Record<TKey, TVal>, mapKey: (val: TVal, key: TKey) => TOutKey): Map<TOutKey, TVal>
-/** Map an object to a Map */
+/** Map an object to a Map
+ @category Map Tools */
 export function objToMap<TKey extends string|number, TVal>(obj: Record<TKey, TVal>): Map<TKey, TVal>
 export function objToMap<TKey extends string|number, TVal, TOutKey, TOut>(obj: Record<TKey, TVal>, mapKey?: ((val: TVal, key: TKey) => TOutKey)|null, mapVal?: (val: TVal, key: TKey) => TOut): Map<TOutKey|TKey, TOut|TVal> {
   const map = new Map<TOutKey|TKey, TOut|TVal>();
@@ -45,6 +51,7 @@ export function objToMap<TKey extends string|number, TVal, TOutKey, TOut>(obj: R
 
 /**
  * Iterate through a map and execute the callback for every element
+ * @category Map Tools
  * @param map
  * @param callback
  */

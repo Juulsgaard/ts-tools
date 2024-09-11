@@ -2,10 +2,12 @@ import {SortFn} from "../types";
 
 /**
  * sort a Date collection
+ * @category Sorting
  */
 export function sortDateAsc(): SortFn<Date|undefined>;
 /**
  * sort a collection based on a Date
+ * @category Sorting
  * @param getDate - Define the Date mapper
  */
 export function sortDateAsc<T extends object>(getDate: (x: T) => Date|undefined): SortFn<T>;
@@ -20,10 +22,12 @@ export function sortDateAsc(getDate?: (x: any) => Date|undefined): SortFn<any> {
 
 /**
  * sort a Date collection (Descending)
+ * @category Sorting
  */
 export function sortDateDesc(): SortFn<Date|undefined>;
 /**
  * sort a collection based on a Date (Descending)
+ * @category Sorting
  * @param getDate - Define the Date mapper
  */
 export function sortDateDesc<T extends object>(getDate: (x: T) => Date|undefined): SortFn<T>;

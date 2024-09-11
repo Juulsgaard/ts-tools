@@ -1,9 +1,14 @@
 import {isArray, isString} from "../helpers/type-predicates";
 
+/**
+ * Supported formats for a collection of CSS classes
+ * @category HTML Tools
+ */
 export type ElementClasses = string[] | Record<string, boolean> | string | undefined | null;
 
 /**
  * Unify different class collection formats into a list of strings
+ * @category HTML Tools
  * @param classes - The class collection
  */
 export function processElementClasses(classes: ElementClasses): string[] {
@@ -22,6 +27,7 @@ export function processElementClasses(classes: ElementClasses): string[] {
 /**
  * A class to manage the applied classes on an HTML Element.
  * The class keeps track of what classes were added and can use that to create differentials.
+ * @category HTML Tools
  */
 export class ElementClassManager<T extends HTMLElement = HTMLElement> {
   private readonly _classes = new Set<string>();

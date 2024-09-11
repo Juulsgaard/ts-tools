@@ -1,11 +1,13 @@
 
 /**
  * Get the values of a Map as an Array
+ * @category Array Tools
  * @param map
  */
 export function mapToArr<TVal, TKey, TOut>(map: ReadonlyMap<TKey, TVal>): TVal[]
 /**
  * Map a Map to an Array
+ * @category Array Tools
  * @param map
  * @param mapFn
  */
@@ -21,11 +23,13 @@ export function mapToArr<TVal, TKey, TOut>(map: ReadonlyMap<TKey, TVal>, mapFn?:
 
 /**
  * Convert a Set to an Array
+ * @category Array Tools
  * @param set
  */
 export function setToArr<TSet, TOut>(set: ReadonlySet<TSet>): TSet[]
 /**
  * Map a Set to an Array
+ * @category Array Tools
  * @param set
  * @param map
  */
@@ -41,11 +45,13 @@ export function setToArr<TSet, TOut>(set: ReadonlySet<TSet>, map?: (val: TSet) =
 
 /**
  * Get the values of an Object as an Array
+ * @category Array Tools
  * @param obj
  */
 export function objToArr<TKey extends string|number, TVal, TOut>(obj: Record<TKey, TVal>): TVal[]
 /**
  * Map an Object to an Array
+ * @category Array Tools
  * @param obj
  * @param mapFn
  */
@@ -63,6 +69,7 @@ export function objToArr<TKey extends string|number, TVal, TOut>(obj: Record<TKe
 
 /**
  * Map an array and filter out any undefined values
+ * @category Array Tools
  * @param arr
  * @param map
  */

@@ -2,10 +2,12 @@ import {SortFn} from "../types";
 
 /**
  * Alphabetically sort a string collection
+ * @category Sorting
  */
 export function sortAlphAsc(): SortFn<number|undefined>;
 /**
  * Alphabetically sort a collection based on a string
+ * @category Sorting
  * @param getString - Define the string mapper
  */
 export function sortAlphAsc<T>(getString: (x: T) => string|undefined): SortFn<T>;
@@ -20,10 +22,12 @@ export function sortAlphAsc(getString?: (x: any) => string|undefined): SortFn<an
 
 /**
  * Alphabetically sort a string collection (Descending)
+ * @category Sorting
  */
 export function sortAlphDesc(): SortFn<number|undefined>;
 /**
  * Alphabetically sort a collection based on a string (Descending)
+ * @category Sorting
  * @param getString - Define the string mapper
  */
 export function sortAlphDesc<T>(getString: (x: T) => string|undefined): SortFn<T>;

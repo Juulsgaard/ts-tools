@@ -9,4 +9,6 @@ A utility library for Typescript
 
 ## Description
 
-This library contains utility methods, types and classes to facilitate complicated operations in Typescript
+This library contains utility methods, types and classes to facilitate complicated operations in Typescript.
+
+Documentation of all the types, tools and classes can be found in the [Documentation](https://www.juulsgaard.io)

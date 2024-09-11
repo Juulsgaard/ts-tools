@@ -1,5 +1,6 @@
 /**
  * Set the first character in the string to lowercase
+ * @category String Tools
  * @param str
  */
 export function lowerFirst<T extends string>(str: T): Uncapitalize<T> {
@@ -9,6 +10,7 @@ export function lowerFirst<T extends string>(str: T): Uncapitalize<T> {
 
 /**
  * Set the first character in the string to uppercase
+ * @category String Tools
  * @param str
  */
 export function upperFirst<T extends string>(str: T): Capitalize<T> {
@@ -18,6 +20,7 @@ export function upperFirst<T extends string>(str: T): Capitalize<T> {
 
 /**
  * Format the string as Title Case
+ * @category String Tools
  * @param str
  */
 export function titleCase(str: string) {
@@ -32,6 +35,7 @@ export function titleCase(str: string) {
 
 /**
  * Format the string as a URL safe slug
+ * @category String Tools
  * @param str
  */
 export function slugify(str: string) {
@@ -41,6 +45,7 @@ export function slugify(str: string) {
 
 /**
  * Format the string as PascalCase
+ * @category String Tools
  * @param str
  */
 export function pascalCase(str: string) {
@@ -53,6 +58,7 @@ export function pascalCase(str: string) {
 
 /**
  * Format the string as camelCase
+ * @category String Tools
  * @param str
  */
 export function camelCase(str: string) {
@@ -65,6 +71,7 @@ export function camelCase(str: string) {
 
 /**
  * Format the string as dash-case
+ * @category String Tools
  * @param str
  */
 export function dashCase(str: string) {
@@ -76,6 +83,7 @@ export function dashCase(str: string) {
 
 /**
  * Remove any HTML tags from the string
+ * @category String Tools
  * @param str
  */
 export function stripTags(str: string) {
@@ -87,11 +95,13 @@ export function stripTags(str: string) {
 
 /**
  * Generate initials from a name
+ * @category String Tools
  * @param name
  */
 export function getNameInitials(name: string): string;
 /**
  * Generate initials from a first and last name
+ * @category String Tools
  * @param firstName - First Name
  * @param lastName - Last Name
  */

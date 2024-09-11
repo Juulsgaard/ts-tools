@@ -7,10 +7,17 @@ interface ScrollOptions {
 
 /**
  * Scroll to an element with an optional offset
+ * @category Scroll Tools
  * @param element
  * @param offset
  */
 export function scrollToElement(element: HTMLElement, offset: number): void;
+/**
+ * Scroll to an element with an optional offset
+ * @category Scroll Tools
+ * @param element
+ * @param options
+ */
 export function scrollToElement(element: HTMLElement, options?: ScrollOptions): void;
 export function scrollToElement(element: HTMLElement, options?: ScrollOptions|number): void{
   options = isNumber(options) ? {offset: options} : options;

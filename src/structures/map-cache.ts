@@ -1,5 +1,9 @@
 import {Disposable, MapFunc} from "../types";
 
+/**
+ * A data structure that maps items and caches results of the mapping for reuse to reduce calls to heavy mapping implementations.
+ * @category Mapping
+ */
 export class ListMapCache<TIn, TOut> implements Disposable {
 
   private _cache = new Map<TIn, TOut>();

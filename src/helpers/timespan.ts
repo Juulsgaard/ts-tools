@@ -1,6 +1,7 @@
 
 /**
  * Utility class to generate timespans in Milliseconds
+ * @category Timespan
  */
 export class Timespan {
 

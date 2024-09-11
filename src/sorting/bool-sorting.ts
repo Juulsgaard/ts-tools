@@ -2,10 +2,12 @@ import {SortFn} from "../types";
 
 /**
  * sort a boolean collection
+ * @category Sorting
  */
 export function sortBoolAsc(): SortFn<boolean|undefined>;
 /**
  * sort a collection based on a boolean
+ * @category Sorting
  * @param getBool - Define the boolean mapper
  */
 export function sortBoolAsc<T>(getBool: (x: T) => boolean|undefined): SortFn<T>;
@@ -20,10 +22,12 @@ export function sortBoolAsc(getBool?: (x: any) => boolean|undefined): SortFn<any
 
 /**
  * sort a boolean collection (Descending)
+ * @category Sorting
  */
 export function sortBoolDesc(): SortFn<boolean|undefined>;
 /**
  * sort a collection based on a boolean (Descending)
+ * @category Sorting
  * @param getBool - Define the boolean mapper
  */
 export function sortBoolDesc<T>(getBool: (x: T) => boolean|undefined): SortFn<T>;

@@ -1,6 +1,7 @@
 
 /**
- * Create a prmise that resolves in `time` ms
+ * Create a promise that resolves in `time` ms
+ * @category Async Tools
  * @param time
  */
 export function sleep(time: number) {
