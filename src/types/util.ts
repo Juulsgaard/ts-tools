@@ -60,6 +60,11 @@ type ConstrainedKeys<T extends {}, TConstraint extends {}> = {[K in keyof TConst
  */
 export type Constrain<T extends {}, TConstraint extends {}> = {[K in ConstrainedKeys<T, TConstraint>]: T[K]}
 
+/**
+ * Creates a Type where no properties are readonly
+ * @category Util Types
+ */
+export type Mutable<T> = {-readonly [K in keyof T]: T[K]};
 
 /**
  * A Record with string keys
