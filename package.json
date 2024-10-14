@@ -1,6 +1,6 @@
 {
   "name": "@juulsgaard/ts-tools",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "description": "Tooling for Typescript",
   "homepage": "https://juulsgaard.github.io/ts-tools/",
   "main": "dist/index.mjs",
