@@ -1,4 +1,4 @@
-import {isArray, isString} from "../helpers/type-predicates";
+import {isArray, isObject, isString} from "../helpers/type-predicates";
 
 /**
  * Supported formats for a collection of CSS classes
@@ -40,6 +40,20 @@ export class ElementClassManager<T extends HTMLElement = HTMLElement> {
     this.element.classList.add(...this.classes);
   }
 
+  private addClass(c: string) {
+    const added = this._classes.add(c);
+    if (!added) return false;
+    this.element.classList.add(c);
+    return true;
+  }
+
+  private removeClass(c: string) {
+    const removed = this._classes.delete(c);
+    if (!removed) return false;
+    this.element.classList.remove(c);
+    return true;
+  }
+
   /**
    * Update the applied classes to the given state.
    * New classes will be applied, and classes not in the new state will be removed.
@@ -52,13 +66,11 @@ export class ElementClassManager<T extends HTMLElement = HTMLElement> {
     for (let c of toSet) {
       const exists = current.delete(c);
       if (exists) continue;
-      this._classes.add(c);
-      this.element.classList.add(c);
+      this.addClass(c)
     }
 
     for (let c of current) {
-      this._classes.delete(c);
-      this.element.classList.remove(c);
+      this.removeClass(c);
     }
   }
 
@@ -72,9 +84,8 @@ export class ElementClassManager<T extends HTMLElement = HTMLElement> {
     const added: string[] = [];
 
     for (let c of toAdd) {
-      const wasAdded = this._classes.add(c);
+      const wasAdded = this.addClass(c);
       if (!wasAdded) continue;
-      this.element.classList.add(c);
       added.push(c);
     }
 
@@ -91,12 +102,63 @@ export class ElementClassManager<T extends HTMLElement = HTMLElement> {
     const removed: string[] = [];
 
     for (let c of toRemove) {
-      const wasDeleted = this._classes.delete(c);
+      const wasDeleted = this.remove(c);
       if (!wasDeleted) continue;
       removed.push(c);
-      this.element.classList.remove(c);
     }
 
     return removed;
+  }
+
+  /**
+   * Toggle classes from the HTML Element.
+   * @param classes - The classes and their toggle state
+   * @returns affectedClasses - lists of classes that were added / removed from the state
+   */
+  toggle(classes: Record<string, boolean>): {added: string[], removed: string[]};
+  /**
+   * Toggle classes from the HTML Element.
+   * @param classes - The classes to remove
+   * @param state - Force the state of classes
+   * @returns affectedClasses - lists of classes that were added / removed from the state
+   */
+  toggle(classes: Exclude<ElementClasses, Record<string, boolean>>, state?: boolean): {added: string[], removed: string[]};
+  toggle(classes: ElementClasses, state?: boolean): {added: string[], removed: string[]} {
+
+    const added: string[] = [];
+    const removed: string[] = [];
+
+    if (isObject(classes) && !isArray(classes)) {
+
+      for (let c in classes) {
+
+        const cState = classes[c];
+
+        if (cState) {
+          const wasAdded = this.addClass(c);
+          if (wasAdded) added.push(c);
+        } else {
+          const wasRemoved = this.removeClass(c);
+          if (wasRemoved) removed.push(c);
+        }
+
+      }
+
+      return {added, removed};
+    }
+
+    const classList = processElementClasses(classes);
+
+    for (let c of classList) {
+      if (state) {
+        const wasAdded = this.addClass(c);
+        if (wasAdded) added.push(c);
+      } else {
+        const wasRemoved = this.removeClass(c);
+        if (wasRemoved) removed.push(c);
+      }
+    }
+
+    return {added, removed};
   }
 }
