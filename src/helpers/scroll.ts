@@ -19,7 +19,8 @@ export function scrollToElement(element: HTMLElement, offset: number): void;
  * @param options
  */
 export function scrollToElement(element: HTMLElement, options?: ScrollOptions): void;
-export function scrollToElement(element: HTMLElement, options?: ScrollOptions|number): void{
+export function scrollToElement(element: HTMLElement, options?: ScrollOptions | number): void {
+
   options = isNumber(options) ? {offset: options} : options;
   const offset = options?.offset ?? 0;
 
@@ -28,7 +29,11 @@ export function scrollToElement(element: HTMLElement, options?: ScrollOptions|nu
     const topPos = element.getBoundingClientRect().top;
 
     window.scrollTo({
-      top: Math.max(0, (topPos + window.scrollY) - offset),
+      top: Math.max(0,
+        (
+          topPos + window.scrollY
+        ) - offset
+      ),
       behavior: "smooth"
     });
 

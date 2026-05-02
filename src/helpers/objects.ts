@@ -18,7 +18,10 @@ export function objEmpty(obj: Record<string, any>): boolean {
  * @param obj - Target object
  * @param callback
  */
-export function iterateObj<TItem>(obj: Record<string, TItem>, callback: (x: TItem, key: string, index: number) => void) {
+export function iterateObj<TItem>(
+  obj: Record<string, TItem>,
+  callback: (x: TItem, key: string, index: number) => void
+) {
   let index = 0;
   for (const [key, value] of Object.entries(obj)) {
     callback(value, key, index);
@@ -48,7 +51,7 @@ export function mapObj<TItem, TOut>(
  */
 export function mapObj<TItem, TOut>(
   obj: Record<string, TItem>,
-  mapVal: (val: TItem, key: string) => TOut|undefined
+  mapVal: (val: TItem, key: string) => TOut | undefined
 ): Record<string, NonNullable<TOut>>
 export function mapObj<TItem, TOut>(
   obj: Record<string, TItem>,
@@ -73,7 +76,11 @@ export function mapObj<TItem, TOut>(
  * @param mapKey
  * @param mapVal
  */
-export function arrToObj<TVal, TOut>(arr: ReadonlyArray<TVal>, mapKey: ArrayMapFunc<TVal, string>, mapVal: ArrayMapFunc<TVal, TOut>): Record<string, TOut>;
+export function arrToObj<TVal, TOut>(
+  arr: ReadonlyArray<TVal>,
+  mapKey: ArrayMapFunc<TVal, string>,
+  mapVal: ArrayMapFunc<TVal, TOut>
+): Record<string, TOut>;
 /**
  * Map an array to an object
  * @category Object Tools
@@ -85,9 +92,9 @@ export function arrToObj<TVal, TOut>(
   arr: ReadonlyArray<TVal>,
   mapKey: ArrayMapFunc<TVal, string>,
   mapVal?: ArrayMapFunc<TVal, TOut>
-): Record<string, TVal|TOut> {
+): Record<string, TVal | TOut> {
 
-  const result = {} as Record<string, TVal|TOut>;
+  const result = {} as Record<string, TVal | TOut>;
   let index = 0;
   for (let val of arr) {
     const newKey = mapKey(val, index);
@@ -105,10 +112,14 @@ export function arrToObj<TVal, TOut>(
  */
 export function deepEquals<T>(item1: T, item2: T) {
 
+  // Type comparison
   if (typeof item1 !== typeof item2) return false;
+
+  // Null comparison
   if (item1 == null) return item2 == null;
   if (item2 == null) return false;
 
+  // Array comparison
   if (Array.isArray(item1)) {
     if (!Array.isArray(item2)) return false;
     if (item1.length !== item2.length) return false;
@@ -118,10 +129,12 @@ export function deepEquals<T>(item1: T, item2: T) {
     return true;
   }
 
+  // Date comparison
   if (item1 instanceof Date && item2 instanceof Date) {
     return item1.getTime() === item2.getTime();
   }
 
+  // Object comparison
   if (isObject(item1)) {
     if (!isObject(item2)) return false;
     if (Object.keys(item1).length !== Object.keys(item2).length) return false;
@@ -132,6 +145,8 @@ export function deepEquals<T>(item1: T, item2: T) {
     }
     return true;
   }
+
+  // Value comparison
   return item1 === item2;
 }
 
@@ -141,8 +156,19 @@ export function deepEquals<T>(item1: T, item2: T) {
  * @param item1
  * @param item2
  */
-export function shallowEquals(item1: Record<string, unknown>|unknown[], item2: Record<string, unknown>|unknown[]): boolean {
+export function shallowEquals(
+  item1: Record<string, unknown> | unknown[] | undefined | null,
+  item2: Record<string, unknown> | unknown[] | undefined | null
+): boolean {
 
+  // Type comparison
+  if (typeof item1 !== typeof item2) return false;
+
+  // Null comparison
+  if (item1 == null) return item2 == null;
+  if (item2 == null) return false;
+
+  // Array comparison
   if (Array.isArray(item1)) {
     if (!Array.isArray(item2)) return false;
     if (item1.length !== item2.length) return false;
@@ -154,12 +180,15 @@ export function shallowEquals(item1: Record<string, unknown>|unknown[], item2: R
 
   if (Array.isArray(item2)) return false;
 
+  // Object comparison
   if (Object.keys(item1).length !== Object.keys(item2).length) return false;
+
   for (let key in item1) {
     if (!item1.hasOwnProperty(key)) continue;
     if (!item2.hasOwnProperty(key)) return false;
     if (item1[key] !== item2[key]) return false;
   }
+
   return true;
 }
 
@@ -209,13 +238,16 @@ export type DeepReadonly<T> =
  */
 export function deepCopy<T>(source: T): T {
 
+  // Handle null
   if (source === undefined) return undefined!;
   if (source === null) return null!;
 
+  // Clone Date
   if (source instanceof Date) {
     return new Date(source.getTime()) as any;
   }
 
+  // Clone Set
   if (source instanceof Set) {
     const ret = new Set() as typeof source;
     for (let val of source) {
@@ -224,6 +256,7 @@ export function deepCopy<T>(source: T): T {
     return ret;
   }
 
+  // Clone Map
   if (source instanceof Map) {
     const ret = new Map() as typeof source;
     for (let [key, val] of source) {
@@ -232,10 +265,12 @@ export function deepCopy<T>(source: T): T {
     return ret;
   }
 
+  // Clone Array
   if (Array.isArray(source)) {
     return source.map(x => deepCopy(x)) as any;
   }
 
+  // Clone Object
   if (isObject(source)) {
     const ret: any = {};
     for (let [key, val] of Object.entries(source)) {
@@ -244,5 +279,6 @@ export function deepCopy<T>(source: T): T {
     return ret;
   }
 
+  // Fallback - don't clone
   return source;
 }
