@@ -22,7 +22,7 @@ export type ValueOfKey<T, TKey extends keyof T> = NonNullable<T[TKey]>;
  * The item type of Array `T`
  * @category Util Types
  */
-export type ArrayType<T> = T extends (infer A)[] ? A : never;
+export type ArrayType<T> = T extends ReadonlyArray<infer A> ? A : never;
 
 /**
  * If `T` extends `TBase` then this type evaluates to `TTrue`, otherwise to `TFalse` or `never`
@@ -47,9 +47,9 @@ export type UnsetExtra<TBase, TFull> = UnsetPartial<Omit<TFull, keyof TBase>>;
  * @category Util Types
  */
 export type DeepPartial<T> =
-  NonNullable<T> extends Date | File ? T :
-    NonNullable<T> extends (infer A)[] ? DeepPartial<A>[] :
-      NonNullable<T> extends Record<string, any> ? { [K in keyof T]?: DeepPartial<T[K]> } :
+  T extends ValueObjectExtended ? T :
+    T extends ReadonlyArray<infer U> ? DeepPartial<U>[] :
+      T extends Record<string, any> ? { [K in keyof T]?: DeepPartial<T[K]> } :
         T;
 
 
@@ -71,3 +71,16 @@ export type Mutable<T> = {-readonly [K in keyof T]: T[K]};
  * @category Util Types
  */
 export type SimpleObject = Record<string, any>;
+
+/**
+ * Types that extend Record<string, any>, but are typically seen as values rater than objects
+ * @category Util Types
+ */
+export type ValueObject = Date|File|Blob;
+
+/**
+ * Types that extend Record<string, any>, but are typically seen as values rater than objects.
+ * This list includes maps and sets in addition to the base list
+ * @category Util Types
+ */
+export type ValueObjectExtended = ValueObject|ReadonlyMap<any, any>|ReadonlySet<any>;

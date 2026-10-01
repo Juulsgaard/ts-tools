@@ -1,6 +1,6 @@
 {
   "name": "@juulsgaard/ts-tools",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "Tooling for Typescript",
   "homepage": "https://juulsgaard.github.io/ts-tools/",
   "main": "dist/index.mjs",
@@ -17,7 +17,7 @@
     "dist/**"
   ],
   "peerDependencies": {
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.0"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
@@ -27,7 +27,7 @@
     "rollup-plugin-esbuild": "^6.2.1",
     "ts-jest": "^29.4.14",
     "typedoc": "^0.28.20",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.0"
   },
   "scripts": {
     "build": "rollup -c",
